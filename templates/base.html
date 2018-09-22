@@ -6,15 +6,54 @@
     <link type="text/css" rel="stylesheet" href="/main.css" media="screen,projection" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    {% block head %}
+    {% endblock head %}
+
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 </head>
 
 <body>
-    <header>{% block header %}{% endblock header %}</header>
-    {% block content %}{% endblock content %}
-    <footer>{% block footer %}{% endblock footer %}</footer>
+    {% block header %}
+    <nav class="" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="{{ config.base_url }}" class="brand-logo">{{
+                config.title }}</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/about">About</a></li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/tags">Tags</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="/about">About</a></li>
+            </ul>
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="/tags">Tags</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    {% endblock header %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+    {% block footer %}
+    {% endblock footer %}
+
+    {% block scripts %}
     <script type="text/javascript" src="/materialize.min.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, {});
+        });
+    </script>
+    {% endblock scripts %}
 </body>
 
 </html>

@@ -1,2 +1,76 @@
 @charset "UTF-8";
 @import "materialize";
+html {
+    background-color: color("blue-grey", "lighten-5");
+    font-size: 16px;
+}
+
+.card-panel> :first-child {
+    margin-top: 0 !important;
+}
+
+.card-title .date {
+    float: right;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.tag-page .date {
+    float: right;
+}
+
+.collapsible-body {
+    background-color: #fff;
+}
+
+pre {
+    padding: 1em;
+    font-size: 14px;
+}
+
+@media #{$medium-and-up} {
+    // styles for medium screens and larger
+    .container {
+        width: 800px;
+    }
+}
+
+@media #{$small-and-down} {
+    .container {
+        margin: 10px;
+    }
+    .container .content .card-panel {
+        padding: 10px;
+    }
+}
+
+h1 {
+    font-size: 266%;
+}
+
+h2 {
+    font-size: 225%;
+}
+
+h3 {
+    font-size: 200%;
+}
+
+h4 {
+    font-size: 166%;
+}
+
+h5 {
+    font-size: 133%;
+}
+
+.content {
+    ul {
+        list-style-type: initial;
+        list-style-position: outside;
+        padding-left: 2em;
+        li {
+            list-style-type: initial;
+        }
+    }
+}

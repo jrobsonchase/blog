@@ -1,1 +1,19 @@
-baz
+{% extends "base.html" %}
+
+{% block content %}
+{% for page in section.pages %}
+<div class="card z-depth-3">
+    <div class="card-content">
+        <span class="card-title">
+            <span class="date">{{ page.date | date(format="%e %b %Y %R") }}</span>
+            <h5>{{ page.title }}</h5>
+            <div>{{ page.description }}</div>
+        </span>
+        <p>{{ page.summary | safe }} ...</p>
+    </div>
+    <div class="card-action">
+        <a href="{{ page.permalink }}">Continue Reading</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <pre>{{__tera_context}}</pre> -->
+<ul class="collapsible popout">
+    {% for tag in terms %}
+    <li>
+        <div class="collapsible-header">{{ tag.name | title }}</div>
+        <div class="collapsible-body content">
+            <ul>
+                {% for page in tag.pages %}
+                <li class="tag-page">
+                    <span class="date">({{ page.date | date(format="%e %b %Y %R") }})</span>
+                    <a href="{{ page.permalink }}">{{ page.title }}</a><br>
+                    {{ page.description }}
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.collapsible');
+        var instances = M.Collapsible.init(elems, {});
+    });
+</script>
+{% endblock scripts %}

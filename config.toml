@@ -10,8 +10,14 @@ compile_sass = true
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Gutenberg
 highlight_code = true
 
+highlight_theme = "bbedit"
+
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+
+taxonomies = [
+    { name = "tags", rss = true },
+]
 
 [extra]
 # Put all your custom variables here
