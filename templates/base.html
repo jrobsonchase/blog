@@ -27,7 +27,7 @@
 
     <div class="footer">
         {% block footer %}
-        <div class="fixed-action-btn">
+        <div id="menu-btn" class="fixed-action-btn scale-transition">
             <div class="btn-0 btn-floating btn-large">
                 <i class="large material-icons">menu</i>
             </div>
@@ -43,9 +43,27 @@
     {% block scripts %}
     <script type="text/javascript" src="/materialize.min.js"></script>
     <script type="text/javascript">
+        var last_pos = 0;
+        var btn_visible = true;
         document.addEventListener('DOMContentLoaded', function () {
+            last_pos = window.pageYOffset;
             var elems = document.querySelectorAll('.fixed-action-btn');
             var instances = M.FloatingActionButton.init(elems, {});
+        });
+        window.addEventListener('scroll', function (e) {
+            var new_pos = window.pageYOffset;
+            if (new_pos < last_pos) {
+                if (!btn_visible) {
+                    document.getElementById("menu-btn").classList.remove("scale-out");
+                    btn_visible = true;
+                }
+            } else {
+                if (btn_visible) {
+                    document.getElementById("menu-btn").classList.add("scale-out");
+                    btn_visible = false;
+                }
+            }
+            last_pos = new_pos;
         });
     </script>
     {% endblock scripts %}
