@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block header %}
-<div class="container">
-    <h1>{{ section.title }}</h1>
-</div>
 {% endblock header %}
 
 {% block content %}
-<div class="page">
-    {{ section.content | safe }}
+<div class="row">
+    <div class="col s12 xl7 offset-xl2">
+        <article>
+            <h1 id="" class="title">{{ section.title }}</h1>
+            {{ section.content | safe }}
+        </article>
+    </div>
 </div>
 {% endblock content %}

@@ -1,8 +1,8 @@
 @charset "UTF-8";
 @import "materialize";
 $background-color: color("grey", "lighten-5");
-$divider-color: color("blue-grey", "lighten-2");
-$menu-color: "blue-grey";
+$divider-color: color("grey", "lighten-2");
+$menu-color: "grey";
 html {
     background-color: $background-color;
     font-size: 16px;
@@ -49,20 +49,32 @@ html {
     }
 }
 
-.page {
-    ul {
-        list-style-type: initial;
-        list-style-position: outside;
+ul .table-of-contents {
+    padding-top: 0;
+    padding-bottom: 0;
+    list-style-type: none;
+    li {
         padding-left: 2em;
-        li {
+        list-style-type: none;
+    }
+}
+
+.content {
+    article {
+        ul {
             list-style-type: initial;
+            list-style-position: outside;
+            padding-left: 2em;
+            li {
+                list-style-type: initial;
+            }
         }
+        pre {
+            padding: 1em;
+            font-size: 14px;
+        }
+        padding-bottom: 2em;
     }
-    pre {
-        padding: 1em;
-        font-size: 14px;
-    }
-    padding-bottom: 2em;
 }
 
 .fixed-action-btn {
@@ -78,6 +90,18 @@ html {
     background-color: $background-color;
 }
 
+.sidenav {
+    li>a {
+        padding: unset;
+    }
+}
+
+.sidenav {
+    .table-of-contents {
+        padding-left: 20px;
+    }
+}
+
 // styles for medium screens and larger
 @media #{$medium-and-up} {
     .post-list {
@@ -90,19 +114,18 @@ html {
             margin-bottom: 1rem;
         }
     }
-    .container {
-        width: 800px;
-    }
     .header {
-        padding-top: 4em;
-        min-height: 5em;
+        margin: 5em;
+    }
+    article {
+        max-width: 700px;
     }
 }
 
 @media #{$small-and-down} {
     .container {
         margin: auto;
-        width: 95%;
+        width: 100%;
     }
     .header {
         min-height: 3em;

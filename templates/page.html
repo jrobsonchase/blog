@@ -1,21 +1,54 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block header %}
-<div class="container">
-    <h1>{{ page.title }}</h1>
+<div id="slide-out" class="setction table-of-contents sidenav">
+    <ul class="section table-of-contents">
+        <li>
+            <a href="#">{{ page.title }}</a>
+        </li>
+        {{ macros::toc_children(children=page.toc) }}
+
+    </ul>
 </div>
 {% endblock header %}
 
 {% block content %}
-<div class="page">
-    {{ page.content | safe }}
+<div class="row">
+    <div class="col s12 xl7 offset-xl2">
+        <article>
+            <h1 id="" class="title">{{ page.title }}</h1>
+            {{ page.content | safe }}
+        </article>
+        <div id="disqus_thread"></div>
+    </div>
+    <div class="col xl3">
+        <div class="pinned">
+            <ul class="section table-of-contents">
+                <li>
+                    <a href="#">{{ page.title }}</a>
+                </li>
+                {{ macros::toc_children(children=page.toc) }}
+            </ul>
+        </div>
+    </div>
 </div>
-<div id="disqus_thread"></div>
 {% endblock content %}
 
 {% block scripts %}
 {{ super() }}
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var hs = document.querySelectorAll('article h1,h2,h3,h4,h5');
+        hs.forEach(function (e) {
+            e.classList.add("section");
+            e.classList.add("scrollspy");
+        });
+        var ss_elems = document.querySelectorAll('.scrollspy');
+        var ss_instances = M.ScrollSpy.init(ss_elems, { scrollOffset: 50 });
+        var sn_elems = document.querySelectorAll('.sidenav');
+        var sn_instances = M.Sidenav.init(sn_elems, {});
+    });
     var disqus_config = function () {
         this.page.url = "{{ page.permalink | safe }}";
         this.page.identifier = "{{ page.slug }}";

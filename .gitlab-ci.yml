@@ -2,7 +2,7 @@ variables:
   REGISTRY: registry.gitlab.com
   REPOSITORY: jrobsonchase/blog
   IMAGE: gutenberg
-  VERSION: 0.4.2
+  VERSION: next
 
 image: "${REGISTRY}/${REPOSITORY}/${IMAGE}:${VERSION}"
 
