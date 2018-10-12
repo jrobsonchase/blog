@@ -10,4 +10,22 @@
 <div class="page">
     {{ page.content | safe }}
 </div>
+<div id="disqus_thread"></div>
 {% endblock content %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{ page.permalink | safe }}";
+        this.page.identifier = "{{ page.slug }}";
+    };
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://josh-robson-chase.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endblock scripts %}
