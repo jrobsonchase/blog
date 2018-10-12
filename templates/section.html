@@ -6,11 +6,10 @@
     <li>
         <h3 class="title">{{ page.title }}</h3>
         <div class="date">{{ page.date | date(format="%e %b %Y %R") }}</div>
-        <div class="description">{{ page.description }}</div>
+        <p class="description">{{ page.description }}</p>
         <p class="summary">{{ page.summary | safe }}</p>
         <a class="more" href="{{ page.permalink }}">Continue Reading</a>
     </li>
-    <hr>
     {% endfor %}
 </ol>
 {% endblock content %}

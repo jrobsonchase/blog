@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- <pre>{{__tera_context}}</pre> -->
-<ul class="collapsible popout">
+<ul class="tax-list collapsible z-depth-0">
     {% for tag in terms %}
-    <li>
+    <li class="taxonomy">
         <div class="collapsible-header">{{ tag.name | title }}</div>
         <div class="collapsible-body content">
             <ul>
                 {% for page in tag.pages %}
-                <li class="tag-page">
-                    <span class="date">({{ page.date | date(format="%e %b %Y %R") }})</span>
-                    <a href="{{ page.permalink }}">{{ page.title }}</a><br>
-                    {{ page.description }}
+                <li class="tax-entry">
+                    <div class="clearfix">
+                        <div class="date">({{ page.date | date(format="%e %b %Y %R") }})</div>
+                        <a class="tax-link" href="{{ page.permalink }}">{{ page.title }}</a>
+                    </div>
                 </li>
                 {% endfor %}
             </ul>

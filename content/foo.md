@@ -48,24 +48,24 @@ Diva agmen [Iove et mihi](http://querorque.org/), nam quanto liquitur committit
 illic obstipuit invalidus nusquam mellis violaverat medius. Erat corpore.
 
 ```C
-    if (multimedia_macro(1)) {
-        sound_thunderbolt.vlog_megabyte += terahertz * wysiwyg(-2);
-        rpc_batch -= 791704;
-    }
-    qwerty(font.input(5, type_sprite.transferHeuristicPeripheral(
-            api_wildcard_export, duplexMegapixel, daemonTrollFrozen)), 4 +
-            control_ethernet, windows_sdsl_screenshot(ray, ntfs_click));
-    if (apache.gif.file_inbox(adsl_bloatware_memory, page,
-            bitratePipelineSpoofing) <= multiplatform) {
-        digital += scrolling_floppy(commercialDdrNet, superscalar_skin.token(
-                itunesRamRtf, -5, 1));
-    } else {
-        hard_basic.storageHorseRestore += 26 + rdf_ripping_nvram(vram, eup_meta,
-                widget);
-    }
-    megapixel_shell_bespoke(tableRubySource.cmos(graphicBitStation),
-            ccd_market);
-    rpcLeftIde(5);
+if (multimedia_macro(1)) {
+sound_thunderbolt.vlog_megabyte += terahertz * wysiwyg(-2);
+rpc_batch -= 791704;
+}
+qwerty(font.input(5, type_sprite.transferHeuristicPeripheral(
+        api_wildcard_export, duplexMegapixel, daemonTrollFrozen)), 4 +
+        control_ethernet, windows_sdsl_screenshot(ray, ntfs_click));
+if (apache.gif.file_inbox(adsl_bloatware_memory, page,
+        bitratePipelineSpoofing) <= multiplatform) {
+digital += scrolling_floppy(commercialDdrNet, superscalar_skin.token(
+        itunesRamRtf, -5, 1));
+} else {
+hard_basic.storageHorseRestore += 26 + rdf_ripping_nvram(vram, eup_meta,
+        widget);
+}
+megapixel_shell_bespoke(tableRubySource.cmos(graphicBitStation),
+        ccd_market);
+rpcLeftIde(5);
 ```
 
 Pro **ita senserit**, et nymphae: miseri: ulnis pars **ossa hic dictis**,

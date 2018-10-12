@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 
+{% block header %}
+<div class="container">
+    <h1>{{ section.title }}</h1>
+</div>
+{% endblock header %}
 
 {% block content %}
-<div class="content">
-    <div class="card-panel z-depth-1">
-        <h1>{{ section.title }}</h1>
-        {{ section.content | safe }}
-    </div>
+<div class="page">
+    {{ section.content | safe }}
 </div>
 {% endblock content %}
