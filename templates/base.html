@@ -15,8 +15,9 @@
 </head>
 
 <body>
-    {% block header %}
-    <nav class="" role="navigation">
+    <div class="header">
+        {% block header %}
+        <!-- <nav class="" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="{{ config.base_url }}" class="brand-logo">{{
                 config.title }}</a>
             <ul class="right hide-on-med-and-down">
@@ -34,23 +35,36 @@
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
-    </nav>
-    {% endblock header %}
+    </nav> -->
+        {% endblock header %}
+    </div>
 
-    <div class="container">
+    <div class="content container">
         {% block content %}
         {% endblock content %}
     </div>
 
-    {% block footer %}
-    {% endblock footer %}
+    <div class="footer">
+        {% block footer %}
+        <div class="fixed-action-btn">
+            <div class="btn-floating btn-large red">
+                <i class="large material-icons">menu</i>
+            </div>
+            <ul>
+                <li><a href="/tags" class="btn-floating green"><i class="material-icons">code</i></a></li>
+                <li><a href="/about" class="btn-floating red"><i class="material-icons">fingerprint</i></a></li>
+                <li><a href="/" class="btn-floating blue"><i class="material-icons">home</i></a></li>
+            </ul>
+        </div>
+        {% endblock footer %}
+    </div>
 
     {% block scripts %}
     <script type="text/javascript" src="/materialize.min.js"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, {});
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {});
         });
     </script>
     {% endblock scripts %}
