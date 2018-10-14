@@ -1,0 +1,12 @@
+<div>
+    {%- for asset in assets %}
+    {%- if asset is ending_with(".jpg") %}
+    <div class="gallery-item">
+        <a href="{{ get_url(path=asset) }}">
+            <img src="{{ resize_image(path=asset, width=240, height=180, op="fill") }}">
+        </a>
+        <br>{{ captions[loop.index0] }}
+    </div>
+    {%- endif %}
+    {%- endfor %}
+</div>
