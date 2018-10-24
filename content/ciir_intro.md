@@ -3,7 +3,6 @@ title = "Crafting Interpreters ... In Rust!"
 author = "Josh Robson Chase"
 date = 2018-10-23
 draft = false
-slug = "ciir_intro"
 +++
 
 As you may or may not know, Bob Nystrom (not the [hockey
@@ -16,6 +15,8 @@ design and implementation of a toy object-oriented language, `lox`. It does
 this not once, but twice! The first implementation is a tree-walk interpreter
 in Java and the second (not yet complete) implementation will be a bytecode
 compiler/interpreter in C.
+
+<!-- more -->
 
 I've been meaning to go through the book for some time now, and, being the
 Rust fanboy that I am, it naturally follows that I'll be going against the
