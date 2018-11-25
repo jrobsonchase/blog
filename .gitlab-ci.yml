@@ -1,20 +1,20 @@
 variables:
   REGISTRY: registry.gitlab.com
   REPOSITORY: jrobsonchase/blog
-  IMAGE: gutenberg
-  VERSION: next
+  IMAGE: zola
+  VERSION: v0.5.0
 
 image: "${REGISTRY}/${REPOSITORY}/${IMAGE}:${VERSION}"
 
 test:
   script:
-    - gutenberg build
+    - zola build
   except:
     - master
 
 pages:
   script:
-    - gutenberg build
+    - zola build
   artifacts:
     paths:
       - public
