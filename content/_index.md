@@ -1,7 +1,4 @@
 +++
 is_draft = false
+sort_by = "date"
 +++
-
-# Some Title
-
-Hello, world!
