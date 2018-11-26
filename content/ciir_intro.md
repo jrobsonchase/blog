@@ -3,6 +3,8 @@ title = "Crafting Interpreters ... In Rust!"
 author = "Josh Robson Chase"
 date = 2018-10-23
 draft = false
+[taxonomies]
+tags = ["rust","parsers","interpreters"]
 +++
 
 As you may or may not know, Bob Nystrom (not the [hockey
