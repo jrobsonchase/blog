@@ -7,7 +7,7 @@
             {% for page in section.pages %}
             <li>
                 <h3 class="title">{{ page.title }}</h3>
-                <div class="date">{{ page.date | date(format="%e %b %Y %R") }}</div>
+                <div class="date">{{ page.date | date(format="%e %b %Y") }}</div>
                 <p class="description">{{ page.description }}</p>
                 <p class="summary">{{ page.summary | safe }}</p>
                 <a class="more" href="{{ page.permalink }}">Continue Reading</a>
