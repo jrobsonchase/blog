@@ -1,0 +1,35 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "serve",
+            "type": "process",
+            "command": "docker",
+            "args": [
+                "run",
+                "-ti",
+                "--rm",
+                "--name",
+                "zola",
+                "-v",
+                "${workspaceFolder}:/build",
+                "-p",
+                "8080:8080",
+                "-p",
+                "1000:1000",
+                "registry.gitlab.com/jrobsonchase/blog/zola:v0.5.0",
+                "zola",
+                "serve",
+                "-p",
+                "8080",
+                "-u",
+                "127.0.0.1",
+                "-i",
+                "0.0.0.0"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
