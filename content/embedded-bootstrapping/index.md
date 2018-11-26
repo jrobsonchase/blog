@@ -141,7 +141,7 @@ order to actually run the code, the board needs to be started with BOOT0
 jumpered low. This is obviously a bit of a pain when trying to iterate
 quickly. Luckily, it's not (usually) necessary when you have a real debugger.
 
-## Buliding The Debugger
+## Building The Debugger
 
 Running code is fun and all, but what I *really* wanted was a way to debug
 it. Enter [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki).
