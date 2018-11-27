@@ -1,7 +1,12 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    {%- block tracking %}
+    {{ macros::google_analytics(id=config.extra.google_analytics_id) }}
+    {%- endblock tracking %}
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/main.css" media="screen,projection" />
 
