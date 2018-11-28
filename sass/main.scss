@@ -83,6 +83,12 @@ ul .table-of-contents {
     }
 }
 
+.footnote-definition {
+    p {
+        display: inline-block;
+    }
+}
+
 .fixed-action-btn {
     right: unset;
     left: 23px;
