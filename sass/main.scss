@@ -21,15 +21,18 @@ html {
 
 .footer {
     .btn-0 {
-        background-color: color($menu-color, "darken-3");
+        background-color: color($menu-color, "darken-4");
     }
     .btn-1 {
-        background-color: color($menu-color, "darken-2");
+        background-color: color($menu-color, "darken-3");
     }
     .btn-2 {
-        background-color: color($menu-color, "darken-1");
+        background-color: color($menu-color, "darken-2");
     }
     .btn-3 {
+        background-color: color($menu-color, "darken-1");
+    }
+    .btn-4 {
         background-color: color($menu-color, "base");
     }
 }

@@ -19,6 +19,8 @@ taxonomies = [
     { name = "tags", rss = true },
 ]
 
+generate_rss = true
+
 [extra]
 # Put all your custom variables here
 google_analytics_id = "UA-129877724-1"
