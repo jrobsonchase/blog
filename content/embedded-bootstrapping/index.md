@@ -239,7 +239,7 @@ The debugger runs its own GDB server, so attaching to it only requires the
 appropriate GDB.
 
 ```bash
-$  arm-none-eabi-gdb target/thumbv6m-none-eabi/release/blink
+$  arm-none-eabi-gdb target/thumbv7m-none-eabi/release/blink
 (gdb) target extended-remote /dev/ttyACM0
 Remote debugging using /dev/ttyACM0
 ```
@@ -253,7 +253,7 @@ Available Targets:
 No. Att Driver
  1      STM32F1 medium density
 (gdb) attach 1 # attach to the one we found
-Attaching to program: /data/home/jchase/src/gitlab.com/jrobsonchase/blink/target/thumbv6m-none-eabi/release/blink, Remote target
+Attaching to program: /data/home/jchase/src/gitlab.com/jrobsonchase/blink/target/thumbv7m-none-eabi/release/blink, Remote target
 0x08000298 in main () at src/main.rs:46
 46              block!(timer.wait()).unwrap();
 ```
@@ -280,7 +280,7 @@ And then, of course, running!
 (gdb) run
 The program being debugged has been started already.
 Start it from the beginning? (y or n) y
-Starting program: /data/home/jchase/src/gitlab.com/jrobsonchase/blink/target/thumbv6m-none-eabi/release/blink 
+Starting program: /data/home/jchase/src/gitlab.com/jrobsonchase/blink/target/thumbv7m-none-eabi/release/blink 
 ```
 
 Interrupting the program and adding breakpoints all work pretty much as
@@ -355,7 +355,7 @@ in the `launch.json` can be created:
     "name": "Cortex Debug",
     "cwd": "${workspaceRoot}",
     "preLaunchTask": "build debug",
-    "executable": "${workspaceRoot}/target/thumbv6m-none-eabi/debug/blink",
+    "executable": "${workspaceRoot}/target/thumbv7m-none-eabi/debug/blink",
     "request": "launch",
     "type": "cortex-debug",
     "BMPGDBSerialPort": "/dev/ttyACM0",
