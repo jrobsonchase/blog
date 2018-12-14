@@ -50,6 +50,15 @@
     {% block scripts %}
     <script type="text/javascript" src="/materialize.min.js"></script>
     <script type="text/javascript">
+        var links = document.links;
+
+        for (var i = 0, linksLength = links.length; i < linksLength; i++) {
+            if (links[i].hostname != window.location.hostname) {
+                links[i].target = '_blank';
+            }
+        }
+    </script>
+    <script type="text/javascript">
         var last_pos = 0;
         var btn_visible = true;
         document.addEventListener('DOMContentLoaded', function () {
