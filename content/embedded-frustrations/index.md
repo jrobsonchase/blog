@@ -75,7 +75,7 @@ tasks that declare that they use that resource.
 
 While you can do some really cool things with RTFM, I can't help but feel
 like its system of hardware/software tasks is simply an alternate route to
-accomplishing the same goals as a `Future`s-driven solution, albiet in a
+accomplishing the same goals as a `Future`s-driven solution, albeit in a
 largely incompatible manner.
 
 ## My Ideal World
