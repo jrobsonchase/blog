@@ -2,7 +2,7 @@
 title = "Embedded Rust Frustrations"
 author = "Josh Robson Chase"
 date = 2019-01-21T15:00:00-05:00
-draft = true
+draft = false
 [taxonomies]
 tags = ["rust", "embedded", "async", "futures"]
 +++
@@ -92,7 +92,9 @@ implementation [here][embrio-async]. I would love to see a set of
 `Future`s-first interfaces that define their own interrupt handlers to handle
 task wakeup/notification. To run these `Future`s, we'll also need a
 sufficiently robust executor, ideally one that can juggle more than one task
-at a time and that doesn't simply poll everything in a tight loop.
+at a time and that doesn't simply poll everything in a tight loop. To that
+end, I've been working on a `no_std`-compatible executor, which will be the
+topic of Part 3!
 
 [thread]: https://internals.rust-lang.org/t/pre-rfc-allowing-async-await-in-no-std/8460
 [embrio-async]: https://github.com/Nemo157/embrio-rs/tree/master/embrio-async
