@@ -28,9 +28,9 @@ Some initial goals for this project:
 
 * Support an arbitrary number of tasks
 * Only poll futures that are actually ready to be polled
+* Provide a "spawner" type that can allow tasks to spawn more tasks
 * Provide a mechanism to put the executor to sleep if nothing needs to be
   polled.
-* Provide a "spawner" type that can allow tasks to spawn more tasks
 
 Some non-goals:
 
@@ -51,9 +51,12 @@ So let's look at the [Future] trait first:
 [Future]: https://doc.rust-lang.org/core/future/trait.Future.html
 
 ```rust
-pub trait Future {
+trait Future {
     type Output;
-    fn poll(self: Pin<&mut Self>, lw: &LocalWaker) -> Poll<Self::Output>;
+    fn poll(
+        self: Pin<&mut Self>,
+        lw: &LocalWaker
+    ) -> Poll<Self::Output>;
 }
 ```
 
@@ -67,7 +70,7 @@ done. It looks like this:
 [Poll]: https://doc.rust-lang.org/core/task/enum.Poll.html
 
 ```rust
-pub enum Poll<T> {
+enum Poll<T> {
     Ready(T),
     Pending,
 }
@@ -148,14 +151,18 @@ For 1, we could simply keep a boolean flag along side each task and ask each
 everything though, so we'll try to come up with something better. Another
 option is to have a queue of "things to poll." This fits well with our second
 requirement, assuming it supports fast lookup via some sort of key. A
-[HashMap] could work, but we don't really need to ascribe any meaning to the
-keys, and we might not want the overhead of hashing. A [Vec] could also work,
-but then there's the issue of indexes getting re-used, which might result in
-things getting polled when they shouldn't. [generational_arena] to the rescue!
-The [Arena] container provides fast lookup (it's an array) and pretty good
-guarantees that no two elements will get the same `Index`, even in the event
-that the same slot is technically re-used. So we can use this to store all of
-our tasks, which are represented as [Future trait objects][LocalFutureObj].
+[BTreeMap] could work, but we don't really need to ascribe any meaning to the
+keys, and we might not want the insert/lookup overhead. A [Vec] could also
+work, but then there's the issue of indexes getting re-used, which might
+result in things getting polled when they shouldn't. [generational_arena] to
+the rescue! The [Arena] container provides fast lookup (it's an array) and
+pretty good guarantees that no two elements will get the same `Index`, even
+in the event that the same slot is technically re-used. So we can use this to
+store all of our tasks, which are represented as [Future trait
+objects][LocalFutureObj].
+
+[Vec]: https://doc.rust-lang.org/alloc/vec/struct.Vec.html
+[BTreeMap]: https://doc.rust-lang.org/alloc/collections/btree_map/struct.BTreeMap.html
 
 So where does that leave us as far as the queue is concerned? It's hard to go
 wrong with the [VecDeque] from the standard library, so let's give that a shot!
@@ -163,8 +170,8 @@ wrong with the [VecDeque] from the standard library, so let's give that a shot!
 So our basic executor looks something like this:
 
 ```rust
-// Note: the lifetime allows us to drive futures that aren't owned by the
-// executor. Don't worry too much about it for now.
+// Note: the lifetime allows us to drive futures that aren't
+// owned by the executor. Don't worry too much about it for now.
 struct Executor<'e> {
     registry: Arena<LocalFutureObj<'e, ()>>,
     queue: VecDeque<Index>,
@@ -210,7 +217,7 @@ an [Arc] and [lock_api]'s [Mutex] type, which lets us be generic over the
 ```rust
 struct Executor<'e, R> {
     registry: Arena<LocalFutureObj<'e, ()>>,
-    queue: Arc<Mutex<R, Index>>,
+    queue: Arc<Mutex<R, VecDeque<Index>>>,
 }
 ```
 
@@ -218,7 +225,7 @@ and our fancy new waker looks like this:
 
 ```rust
 struct QueueWaker<R> {
-    queue: Arc<Mutex<R, Index>>,
+    queue: Arc<Mutex<R, VecDeque<Index>>>,
     id: Index,
 }
 
@@ -233,7 +240,9 @@ impl<R> Wake for QueueWaker<R> {
 
 Now, we can fill in the missing piece of the event loop:
 ```rust
-    let waker = LocalWaker::new(Arc::new(QueueWaker(self.queue.clone(), id)));
+let waker = LocalWaker::new(Arc::new(
+        QueueWaker(self.queue.clone(), id)
+    ));
 ```
 
 Note: the queue also needs a lock, but we can't do it in the `while let` due
