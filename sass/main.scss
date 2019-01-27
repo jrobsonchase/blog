@@ -174,3 +174,7 @@ h4 {
 h5 {
     font-size: 133%;
 }
+
+sup.footnote-definition-label + p {
+    display: inline;
+}
