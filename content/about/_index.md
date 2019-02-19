@@ -11,6 +11,7 @@ I like Rust, keyboards, drones, and mead - not necessarily in that order.
  * [GitHub](https://github.com/jrobsonchase)
  * [GitLab](https://gitlab.com/jrobsonchase)
  * [Resume](https://jrobsonchase.gitlab.io/resume/JoshRobsonChase-Resume.pdf)
+ * [GPG Key](/pubkey.asc)
 
 I'm on the Rust [Embedded Foundations][embedded-foundations] working group.
 
