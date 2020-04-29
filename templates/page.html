@@ -20,6 +20,7 @@
     <div class="col s12 xl8 offset-xl1">
         <article>
             <h1 id="" class="title">{% if page.draft %}DRAFT: {% endif %}{{ page.title }}</h1>
+            <div class="date">{{ page.date | date(format="%e %b %Y") }}</div>
             {{ page.content | safe }}
         </article>
         <div id="disqus_thread"></div>

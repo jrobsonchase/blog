@@ -142,6 +142,9 @@ ul .table-of-contents {
     }
     article {
         max-width: 900px;
+        .date {
+            text-align: right;
+        }
     }
 }
 
