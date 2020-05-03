@@ -5,7 +5,6 @@
     <div class="col s12 xl7 offset-xl2">
         <ol class="post-list">
             {% for page in section.pages %}
-            {% if not page.draft %}
             <li>
                 <h3 class="title">{{ page.title }}</h3>
                 <div class="date">{{ page.date | date(format="%e %b %Y") }}</div>
@@ -13,7 +12,6 @@
                 <p class="summary">{{ page.summary | safe }}</p>
                 <a class="more" href="{{ page.permalink }}">Continue Reading</a>
             </li>
-            {% endif %}
             {% endfor %}
         </ol>
     </div>
