@@ -2,7 +2,7 @@ variables:
   REGISTRY: registry.gitlab.com
   REPOSITORY: jrobsonchase/blog
   IMAGE: zola
-  VERSION: v0.5.1
+  VERSION: v0.10.1
 
 stages:
   - build
