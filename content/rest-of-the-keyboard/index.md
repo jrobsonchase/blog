@@ -1,8 +1,7 @@
 +++
 title = "The Rest of the Keyboard"
 author = "Josh Robson Chase"
-date = 2020-05-03T11:00:00-05:00
-draft = true
+date = 2020-05-06T19:00:00-05:00
 [taxonomies]
 tags = ["rust", "embedded", "async", "futures", "keyboard"]
 +++
@@ -36,6 +35,8 @@ daisy-chaining. Its firmware is built with Rust and runs on stm32f103
 BluePill-like [microcontrollers][robotdyn]. It supports [NKRO], macros, and
 some media/extra keys.
 
+{{ image(path="polymer.jpg", alt="The complete keyboard.") }}
+
 [robotdyn]: https://robotdyn.com/stm32f103-stm32-arm-mini-system-dev-board-stm-firmware.html
 [NKRO]: https://en.wikipedia.org/wiki/Rollover_(key)#n-key_rollover
 
@@ -65,17 +66,20 @@ the same type, but is otherwise flexible. So if you had a small module for
 macro purposes, you should be able to change its physical position in the
 chain and have it get correctly matched up with the logical layout.
 
-TODO Diagrams n stuff
-
 Another fun aspect of this design is that I was able to build a "debug"
 module with no keys of its own that I can insert into any part of the chain
-to do things like snoop on messages from other modules, hook up a [BMP], or
+to do things like snoop on messages from other modules, hook up my [BMP], or
 get easy access to the microcontroller pins with a logic analyzer.
 
-TODO Pic of debug board
+Here's a pic of the debug module stuck between my two main ones. I've got a
+logic analyzer hooked up to analyze the serial messages flying back and
+forth, and a bmp attached to its SWD pins. Apologies for the messy desk.
+
+{{ image(path="debug_module.jpg", alt="Debug Module. Apologies for the messy desk.") }}
 
 [letssplit]: https://github.com/nicinabox/lets-split-guide
 [ergodox]: https://www.ergodox.io/
+[BMP]: https://josh.robsonchase.com/embedded-bootstrapping
 
 #### Macros
 
@@ -166,7 +170,7 @@ but it does mean that the [final(ish) version][final] differs ever so slightly
 from the one I'm using day-to-day. I've been having my PCBs fabricated by
 [JLCPCB] and haven't ad an issue with them yet.
 
-TODO Pic of mistake
+{{ image(path="mistake.png", alt="Whoops") }}
 
 [final]: https://gitlab.com/polymer-kb/hardware/pcb/-/tree/8282be739f454995ffa6a25deee1fc7297899be5
 [JLCPCB]: https://jlcpcb.com/
@@ -240,7 +244,7 @@ my firmware will build with stable Rust.
 
 [embrio-async]: https://github.com/Nemo157/embrio-rs/tree/master/embrio-async
 
-### Mini-Reactors
+#### Mini-Reactors
 
 In the Rust async world, the "executor" is responsible for making sure that
 tasks requiring IO get executed when the IO is available. But what actually
@@ -260,6 +264,33 @@ registered interest if needed. This 1:1 relationship between the async IO
 object and its reactor ensures that you only need to bring in the bare
 minimum to drive the IO that you need, rather than a "kitchen sink" reactor
 that you may not need most of.
+
+Note: the following example code ignores the problem of sharing variables
+among `init`, `idle`, and the `USART1` interrupt.
+```rust
+fn init() {
+    // Configure the base abstraction
+    let left_usart = Serial::usart1(
+        // Configuration arguments
+        ...
+    );
+    // Wrap it in a reactor
+    let left_reactor = serial::Reactor::new(left_usart.split());
+}
+
+fn idle() {
+    // "Take" it to claim ownership of its read/write objects.
+    // These are the objects that implement the async Read/Write traits.
+    let (left_tx, left_rx) = left_reactor.take();
+}
+
+// Interrupt vector
+fn USART1() {
+    // Clear interrupt flags, copy bytes into/out of data registers,
+    // notify waiting tasks.
+    left_reactor.turn()
+}
+```
 
 Right now, my crate only supports minimal timers and non-DMA serial ports
 since those were all I needed. Eventually, it would be awesome to support
@@ -291,8 +322,8 @@ that supports `no_std` and simple byte slices rather than the types from
 ## What's Next?
 
 What *isn't* next? QMK, the metric by which all other keyboard firmwares will
-inevitably be measured by, has a *huge* list of [features][qmk-features] (on
-the left side).
+inevitably be measured by, has a *huge* list of [features][qmk-features] (not
+exhaustive by a long shot).
 
 One thing that's obviously lacking is any support for lighting. It's not
 something that I particularly feel the need for, but it seems like a lot of
@@ -312,5 +343,6 @@ there's nothing meant for people who are interested in building it or
 designing their own modules. I'm hoping if it ever reaches that level of
 interest, some kind soul might help out with that 😁.
 
+[qmk-features]: https://blog.splitkb.com/introduction-to-qmk-features
 [TheZoq2]: https://github.com/TheZoq2
 [layout]: https://gitlab.com/polymer-kb/firmware/polymer/-/blob/master/src/layout.rs
