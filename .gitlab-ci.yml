@@ -1,14 +1,13 @@
 variables:
   REGISTRY: registry.gitlab.com
-  REPOSITORY: jrobsonchase/blog
-  IMAGE: zola
+  REPOSITORY: jrobsonchase/zola
   VERSION: v0.10.1
 
 stages:
   - build
   - pages
 
-image: "${REGISTRY}/${REPOSITORY}/${IMAGE}:${VERSION}"
+image: "${REGISTRY}/${REPOSITORY}:${VERSION}"
 
 build stable:
   stage: build
@@ -22,14 +21,14 @@ build latest:
   extends: build stable
   variables:
     EXTRA_PATH: latest
-  image: "${REGISTRY}/${REPOSITORY}/${IMAGE}:latest"
+  image: "${REGISTRY}/${REPOSITORY}:latest"
   allow_failure: true
   script:
     - zola build --drafts -u https://josh.robsonchase.com/${EXTRA_PATH} -o public/${EXTRA_PATH}
 
 build next:
   extends: build latest
-  image: "${REGISTRY}/${REPOSITORY}/${IMAGE}:next"
+  image: "${REGISTRY}/${REPOSITORY}:next"
   variables:
     EXTRA_PATH: next
 
