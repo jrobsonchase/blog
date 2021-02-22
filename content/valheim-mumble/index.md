@@ -534,3 +534,6 @@ minimally invasive and doesn't require any additional configuration.
 Full source for the plugin can be found [here][repo], and the compiled
 version can be downloaded from the [Releases][releases]. Bug reports are
 always welcome, as are suggestions for improvement!
+
+[repo]: https://gitlab.com/jrobsonchase/valheimpositionalaudio
+[releases]: https://gitlab.com/jrobsonchase/valheimpositionalaudio/-/releases
