@@ -1,5 +1,9 @@
 @charset "UTF-8";
 @import "materialize";
+@import url("syntax-theme-monokai.css");
+// @import url("syntax-theme-dark.css") (prefers-color-scheme: dark);
+// @import url("syntax-theme-light.css") (prefers-color-scheme: light);
+
 $background-color: color("grey", "lighten-5");
 $divider-color: color("grey", "lighten-2");
 $menu-color: "grey";
@@ -183,7 +187,6 @@ sup.footnote-definition-label + p {
 }
 
 code {
-    background-color: #eee;
     padding: 0.05em 0.25em;
     border-radius: 0.1em;
 }
