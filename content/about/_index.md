@@ -23,4 +23,4 @@ I'm currently working on a [custom keyboard programmed in Rust][polymer-kb].
 
 ## Pics
 
-{{ gallery( assets=["about/josh.jpg", "about/marina.jpg", "about/max.jpg"], captions=["Me", "Marina (my wife)", "Max (our dog)"]) }}
+{{ gallery( assets=["about/josh.jpg", "about/marina.jpg", "about/maxmochi.jpg"], captions=["Me", "Marina (my wife)", "Max and Mochi (our dogs)"]) }}
