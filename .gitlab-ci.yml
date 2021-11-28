@@ -1,7 +1,7 @@
 variables:
   REGISTRY: registry.gitlab.com
   REPOSITORY: jrobsonchase/zola
-  VERSION: v0.10.1
+  VERSION: v0.14.1
 
 stages:
   - build
