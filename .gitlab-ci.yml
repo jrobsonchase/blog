@@ -1,7 +1,7 @@
 variables:
   REGISTRY: registry.gitlab.com
-  REPOSITORY: jrobsonchase/blog-builder
-  VERSION: v0.14.1
+  REPOSITORY: jrobsonchase/nix-bootstrap/builder
+  VERSION: latest
 
 stages:
   - build
@@ -11,26 +11,21 @@ image: "${REGISTRY}/${REPOSITORY}:${VERSION}"
 
 build stable:
   stage: build
+  before_script:
+    - eval "$(nix print-dev-env)"
   script:
     - zola build
   artifacts:
     paths:
       - public
 
-build latest:
+build drafts:
   extends: build stable
   variables:
-    EXTRA_PATH: latest
-  image: "${REGISTRY}/${REPOSITORY}:latest"
+    EXTRA_PATH: wip
   allow_failure: true
   script:
     - zola build --drafts -u https://josh.robsonchase.com/${EXTRA_PATH} -o public/${EXTRA_PATH}
-
-build next:
-  extends: build latest
-  image: "${REGISTRY}/${REPOSITORY}:next"
-  variables:
-    EXTRA_PATH: next
 
 pages:
   script: "true"
