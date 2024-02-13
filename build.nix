@@ -9,7 +9,10 @@
 stdenv.mkDerivation {
   name = "blog-robsonchase-com${lib.optionalString drafts "-drafts"}";
 
-  src = ./.;
+  src = lib.cleanSourceWith {
+    src = lib.cleanSource ./.;
+    filter = path: _type: ! (lib.hasSuffix ".nix" path);
+  };
 
   nativeBuildInputs = [
     zola
