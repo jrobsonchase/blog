@@ -1,35 +1,13 @@
-variables:
-  REGISTRY: registry.gitlab.com
-  REPOSITORY: jrobsonchase/nix-bootstrap/builder
-  VERSION: latest
-
 stages:
-  - build
   - pages
 
-image: "${REGISTRY}/${REPOSITORY}:${VERSION}"
-
-build stable:
-  stage: build
-  before_script:
-    - eval "$(nix print-dev-env)"
-  script:
-    - zola build
-  artifacts:
-    paths:
-      - public
-
-build drafts:
-  extends: build stable
-  variables:
-    EXTRA_PATH: wip
-  allow_failure: true
-  script:
-    - zola build --drafts -u https://josh.robsonchase.com/${EXTRA_PATH} -o public/${EXTRA_PATH}
+image: nixpkgs/nix-flakes
 
 pages:
-  script: "true"
   stage: pages
+  script:
+    - nix build
+    - cp --no-preserve ownership,mode -Lr ./result public
   artifacts:
     paths:
       - public

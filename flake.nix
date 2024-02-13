@@ -12,16 +12,20 @@
         pkgs = nixpkgs.legacyPackages.${system};
         inherit (pkgs) mkShell;
       in
-      {
-        devShells.default = mkShell {
-          buildInputs = with pkgs; [
-            zola
+      rec {
+        packages.default = pkgs.symlinkJoin {
+          name = "blog";
+          paths = [
+            packages.stable
+            packages.drafts
           ];
         };
-
-        packages.hello = nixpkgs.legacyPackages.${system}.hello;
-
-        defaultPackage = self.packages.${system}.hello;
-
+        packages.stable = pkgs.callPackage ./build.nix { };
+        packages.drafts = packages.stable.override {
+          drafts = true;
+        };
+        devShells.default = mkShell {
+          inputsFrom = [ packages.default ];
+        };
       });
 }
