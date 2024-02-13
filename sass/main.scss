@@ -190,3 +190,7 @@ code {
     padding: 0.05em 0.25em;
     border-radius: 0.1em;
 }
+
+:not(pre) > code {
+    background-color: lightgray;
+}
