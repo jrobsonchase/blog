@@ -13,19 +13,12 @@
         inherit (pkgs) mkShell;
       in
       rec {
-        packages.default = pkgs.symlinkJoin {
-          name = "blog";
-          paths = [
-            packages.stable
-            packages.drafts
-          ];
-        };
-        packages.stable = pkgs.callPackage ./build.nix { };
-        packages.drafts = packages.stable.override {
-          drafts = true;
+        packages.default = pkgs.callPackage ./build.nix { };
+        packages.stable-only = packages.default.override {
+          drafts = false;
         };
         devShells.default = mkShell {
-          inputsFrom = [ packages.drafts ];
+          inputsFrom = [ packages.default ];
         };
       });
 }

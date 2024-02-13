@@ -3,11 +3,11 @@
 , zola
 , tree
 , domain ? "josh.robsonchase.com"
-, drafts ? false
+, drafts ? true
 , drafts-path ? "wip"
 }:
 stdenv.mkDerivation {
-  name = "blog-robsonchase-com${lib.optionalString drafts "-drafts"}";
+  name = "blog-robsonchase-com${lib.optionalString (!drafts) "-stable"}";
 
   src = lib.cleanSourceWith {
     src = lib.cleanSource ./.;
@@ -16,20 +16,16 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     zola
-    tree
   ];
 
   buildPhase =
     let
       args = lib.concatStringsSep " " ([
-
+        "-u"
+        "https://${domain}"
       ]
       ++ (lib.optionals drafts [
         "--drafts"
-        "-u"
-        "https://${domain}/${drafts-path}"
-        "-o"
-        "public/${drafts-path}"
       ]));
     in
     ''
