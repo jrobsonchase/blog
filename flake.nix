@@ -25,7 +25,7 @@
           drafts = true;
         };
         devShells.default = mkShell {
-          inputsFrom = [ packages.default ];
+          inputsFrom = [ packages.drafts ];
         };
       });
 }

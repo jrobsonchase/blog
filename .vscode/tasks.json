@@ -4,59 +4,15 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "serve drafts",
-            "type": "process",
-            "command": "docker",
-            "args": [
-                "run",
-                "-ti",
-                "--rm",
-                "--name",
-                "zola",
-                "-v",
-                "${workspaceFolder}:/build",
-                "-p",
-                "8080:8080",
-                "-p",
-                "1024:1024",
-                "registry.gitlab.com/jrobsonchase/blog-builder:v0.14.1",
-                "zola",
-                "serve",
-                "-p",
-                "8080",
-                "-u",
-                "127.0.0.1",
-                "-i",
-                "0.0.0.0",
-                "--drafts"
-            ],
-            "problemMatcher": []
-        },
-        {
             "label": "serve",
             "type": "process",
-            "command": "docker",
+            "command": "direnv",
             "args": [
-                "run",
-                "-ti",
-                "--rm",
-                "--name",
-                "zola",
-                "-v",
-                "${workspaceFolder}:/build",
-                "-p",
-                "8080:8080",
-                "-p",
-                "1024:1024",
-                "registry.gitlab.com/jrobsonchase/blog-builder:v0.14.1",
+                "exec",
+                "${workspaceFolder}",
                 "zola",
                 "serve",
-                "-p",
-                "8080",
-                "-u",
-                "127.0.0.1",
-                "-i",
-                "0.0.0.0"
+                "--drafts"
             ],
             "problemMatcher": []
         }
