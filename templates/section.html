@@ -6,7 +6,7 @@
         <ol class="post-list">
             {% for page in section.pages %}
             <li>
-                <h3 class="title">{{ page.title }}</h3>
+                <h3 class="title">{% if page.draft %}DRAFT: {% endif %}{{ page.title }}</h3>
                 <div class="date">{{ page.date | date(format="%e %b %Y") }}</div>
                 <p class="description">{{ page.description }}</p>
                 <p class="summary">{{ page.summary | safe }}</p>
