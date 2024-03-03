@@ -5,11 +5,11 @@
     <div class="col s12 xl7 offset-xl2">
         <ol class="post-list">
             {% for page in section.pages %}
-            <li>
+            <li {% if page.draft and config.mode != "Serve"%}hidden{% endif %}>
                 <h3 class="title">{% if page.draft %}DRAFT: {% endif %}{{ page.title }}</h3>
                 <div class="date">{{ page.date | date(format="%e %b %Y") }}</div>
-                <p class="description">{{ page.description }}</p>
-                <p class="summary">{{ page.summary | safe }}</p>
+                <div class="description">{{ page.description }}</div>
+                <div class="summary">{{ page.summary | safe }}</div>
                 <a class="more" href="{{ page.permalink }}">Continue Reading</a>
             </li>
             {% endfor %}
