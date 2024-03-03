@@ -1,5 +1,5 @@
 {% set processed = resize_image(path=page.slug ~ "/" ~ path, width=1280, height=720, op="fit") %}
-<a href={{ path }}>
+<a href={{ get_url(path=page.slug ~ "/" ~ path) }}>
     <img src="{{ processed.url }}" {%- if alt %} alt="{{ alt }}"
         title="{{ alt }}" {%- endif %}>
 </a>
