@@ -9,11 +9,9 @@ compile_sass = true
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-taxonomies = [
-    { name = "tags", rss = true },
-]
+taxonomies = [{ name = "tags", feed = true }]
 
-generate_rss = true
+generate_feed = true
 
 [markdown]
 # Whether to do syntax highlighting
@@ -23,8 +21,8 @@ highlight_code = true
 highlight_theme = "css"
 
 highlight_themes_css = [
-    { theme = "monokai", filename = "syntax-theme-monokai.css"},
-    { theme = "OneHalfDark", filename = "syntax-theme-OneHalfDark.css"},
+    { theme = "monokai", filename = "syntax-theme-monokai.css" },
+    { theme = "OneHalfDark", filename = "syntax-theme-OneHalfDark.css" },
     { theme = "base16-ocean-dark", filename = "syntax-theme-base16-ocean-dark.css" },
     { theme = "base16-ocean-light", filename = "syntax-theme-base16-ocean-light.css" },
 ]
