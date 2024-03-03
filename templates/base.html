@@ -8,8 +8,8 @@
     {%- endblock tracking %}
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/main.css" media="screen,projection" />
-    <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+    <link type="text/css" rel="stylesheet" href="{{ config.base_url }}/main.css" media="screen,projection" />
+    <link rel="alternate" type="application/rss+xml" href="{{ config.base_url }}/rss.xml" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -38,17 +38,17 @@
                 <i class="large material-icons">menu</i>
             </div>
             <ul>
-                <li><a rel="alternate" type="application/rss+xml" href="/rss.xml" class="btn-4 btn-floating"><i class="material-icons">rss_feed</i></a></li>
-                <li><a href="/tags" class="btn-3 btn-floating"><i class="material-icons">code</i></a></li>
-                <li><a href="/about" class="btn-2 btn-floating"><i class="material-icons">fingerprint</i></a></li>
-                <li><a href="/" class="btn-1 btn-floating"><i class="material-icons">home</i></a></li>
+                <li><a rel="alternate" type="application/rss+xml" href="{{ config.base_url }}/rss.xml" class="btn-4 btn-floating"><i class="material-icons">rss_feed</i></a></li>
+                <li><a href="{{ config.base_url }}/tags" class="btn-3 btn-floating"><i class="material-icons">code</i></a></li>
+                <li><a href="{{ config.base_url }}/about" class="btn-2 btn-floating"><i class="material-icons">fingerprint</i></a></li>
+                <li><a href="{{ config.base_url }}/" class="btn-1 btn-floating"><i class="material-icons">home</i></a></li>
             </ul>
         </div>
         {% endblock footer %}
     </div>
 
     {% block scripts %}
-    <script type="text/javascript" src="/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ config.base_url }}/materialize.min.js"></script>
     <script type="text/javascript">
         var links = document.links;
 

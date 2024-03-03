@@ -2,7 +2,7 @@
 , stdenv
 , zola
 , tree
-, domain ? "josh.robsonchase.com"
+, baseURL ? "https://josh.robsonchase.com"
 , drafts ? true
 , drafts-path ? "wip"
 }:
@@ -22,7 +22,7 @@ stdenv.mkDerivation {
     let
       args = lib.concatStringsSep " " ([
         "-u"
-        "https://${domain}"
+        "${baseURL}"
       ]
       ++ (lib.optionals drafts [
         "--drafts"

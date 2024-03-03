@@ -14,6 +14,9 @@
       in
       rec {
         packages.default = pkgs.callPackage ./build.nix { };
+        packages.gh-pages = packages.default.override {
+          baseURL = "https://jrobsonchase.github.io/blog";
+        };
         packages.stable-only = packages.default.override {
           drafts = false;
         };
